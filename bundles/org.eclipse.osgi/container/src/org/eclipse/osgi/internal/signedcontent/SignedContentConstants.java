@@ -1,5 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2006, 2014 IBM Corporation and others.
+ * Copyright 2021 NXP
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which accompanies this distribution,
@@ -9,6 +10,7 @@
  * SPDX-License-Identifier: EPL-2.0
  * 
  * Contributors: IBM Corporation - initial API and implementation
+ * 				NXP - RSA SHA 256 oid added
  ******************************************************************************/
 
 package org.eclipse.osgi.internal.signedcontent;
@@ -61,6 +63,7 @@ public interface SignedContentConstants {
 
 	public static final int DSA_OID[] = {1, 2, 840, 10040, 4, 1};
 	public static final int RSA_OID[] = {1, 2, 840, 113549, 1, 1, 1};
+	public static final int RSA_SHA256_OID[] = {1, 2, 840, 113549, 1, 1, 11};
 
 	// constant for trust engine service
 	public static final String TRUST_ENGINE = "osgi.signedcontent.trust.engine"; //$NON-NLS-1$

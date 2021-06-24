@@ -1,5 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2006, 2016 IBM Corporation and others.
+ * Copyright 2021 NXP
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which accompanies this distribution,
@@ -9,16 +10,33 @@
  * SPDX-License-Identifier: EPL-2.0
  * 
  * Contributors: IBM Corporation - initial API and implementation
+ * 				NXP - RSA SHA 256 oid added
  ******************************************************************************/
 package org.eclipse.osgi.internal.signedcontent;
 
 import java.io.ByteArrayInputStream;
 import java.math.BigInteger;
-import java.security.*;
-import java.security.cert.*;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.Signature;
+import java.security.SignatureException;
 import java.security.cert.Certificate;
-import java.text.*;
-import java.util.*;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.TimeZone;
 import javax.security.auth.x500.X500Principal;
 import org.eclipse.osgi.util.NLS;
 
@@ -74,6 +92,9 @@ public class PKCS7Processor implements SignedContentConstants {
 		}
 		if (Arrays.equals(RSA_OID, encOid)) {
 			return "RSA"; //$NON-NLS-1$
+		}
+		if (Arrays.equals(RSA_SHA256_OID, encOid)) {
+			return "RSA_SHA256"; //$NON-NLS-1$
 		}
 		throw new NoSuchAlgorithmException("No algorithm found for " + oid2String(encOid)); //$NON-NLS-1$
 	}
